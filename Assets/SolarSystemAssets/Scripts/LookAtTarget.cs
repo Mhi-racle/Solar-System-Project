@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
+using TMPro;
 public class LookAtTarget : MonoBehaviour {
 
     [Tooltip("This is the object that the script's game object will look at by default")]
@@ -8,6 +9,9 @@ public class LookAtTarget : MonoBehaviour {
 
     [Tooltip("This is the object that the script's game object is currently look at based on the player clicking on a gameObject")]
     public GameObject currentTarget; // the target that the camera should look at
+
+    [Tooltip("Changes the text to the name of the planet once it's clicked")]
+    public TMP_Text text;
 
     // Start happens once at the beginning of playing. This is a great place to setup the behavior for this gameObject
 	void Start () {
@@ -60,6 +64,7 @@ public class LookAtTarget : MonoBehaviour {
             // the LookAt function makes a transform point it's Z axis towards another point in space
             // In this case it is pointing towards the target.transform
             transform.LookAt(currentTarget.transform);
+            text.text = currentTarget.name + " is selected";
         } else // reset the look at back to the default
         {
             currentTarget = defaultTarget;
